@@ -22,21 +22,22 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   const { data, refetch } = useGetAllNotificationsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+  const [mounted, setMounted] = useState(false);
 
   const [updateNotificationStatus, { isSuccess }] =
     useUpdateNotificationStatusMutation();
 
   const [notifications, setNotifications] = useState<any>([]);
-
   const [audio, setAudio] = useState<any>(null);
 
-  if (typeof window !== "undefined") {
+  useEffect(() => {
+    setMounted(true);
     setAudio(
       new Audio(
         "https://res.cloudinary.com/drziviyla/video/upload/v1704284765/mixkit-light-button-2580_usgkqg.wav"
       )
     );
-  }
+  }, []);
 
   const playerNotificationSound = () => {
     if (audio) {
@@ -55,17 +56,24 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     if (isSuccess) {
       refetch();
     }
-    if (audio) {
+
+    if (mounted) {
       audio.load();
     }
-  }, [audio, data, isSuccess, refetch]);
+  }, [data, isSuccess, refetch]);
 
   useEffect(() => {
-    socketId.on("newNotification", (data) => {
-      refetch();
-      playerNotificationSound();
-    });
+    if (mounted) {
+      socketId.on("newNotification", (data) => {
+        refetch();
+        playerNotificationSound();
+      });
+    }
   }, [playerNotificationSound, refetch]);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleNotificationStatusChange = async (id: string) => {
     await updateNotificationStatus(id);
