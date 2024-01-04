@@ -9,7 +9,7 @@ import {
   ArrowBackIosIcon,
   PeopleOutlinedIcon,
   ReceiptOutlinedIcon,
-  BarChartOutlinedIcon,
+  BarChartIcon,
   MapOutlinedIcon,
   GroupsIcon,
   OndemandVideoIcon,
@@ -269,7 +269,7 @@ const Sidebar = () => {
             <Item
               title="Courses Analytics"
               to="/admin/courses-analytics"
-              icon={<BarChartOutlinedIcon />}
+              icon={<BarChartIcon />}
               selected={selected}
               setSelected={setSelected}
             />

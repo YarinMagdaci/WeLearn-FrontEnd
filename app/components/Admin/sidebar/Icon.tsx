@@ -3,7 +3,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartoutlined";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import GroupsIcon from "@mui/icons-material/Groups";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
@@ -20,7 +20,7 @@ export {
   ArrowBackIosIcon,
   PeopleOutlinedIcon,
   ReceiptOutlinedIcon,
-  BarChartOutlinedIcon,
+  BarChartIcon,
   MapOutlinedIcon,
   GroupsIcon,
   OndemandVideoIcon,
