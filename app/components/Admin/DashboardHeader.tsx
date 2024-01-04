@@ -28,14 +28,20 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
 
   const [notifications, setNotifications] = useState<any>([]);
 
-  const [audio] = useState(
-    new Audio(
-      "https://res.cloudinary.com/drziviyla/video/upload/v1704284765/mixkit-light-button-2580_usgkqg.wav"
-    )
-  );
+  const [audio, setAudio] = useState<any>(null);
+
+  if (typeof window !== "undefined") {
+    setAudio(
+      new Audio(
+        "https://res.cloudinary.com/drziviyla/video/upload/v1704284765/mixkit-light-button-2580_usgkqg.wav"
+      )
+    );
+  }
 
   const playerNotificationSound = () => {
-    audio.play();
+    if (audio) {
+      audio.play();
+    }
   };
 
   useEffect(() => {
@@ -49,7 +55,9 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     if (isSuccess) {
       refetch();
     }
-    audio.load();
+    if (audio) {
+      audio.load();
+    }
   }, [audio, data, isSuccess, refetch]);
 
   useEffect(() => {
